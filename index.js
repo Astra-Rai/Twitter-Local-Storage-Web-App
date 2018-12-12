@@ -30,11 +30,25 @@ function newTweet(e){
   const tweet = document.getElementById('tweet').value;
   //text console.log()//this should print whatever text thta is in textarea, to console, once submit button is clicked is in the console
   //create an li element, this is from the text that is entered in the text area
+  
+  //create a remove button
+  const removeBtn = document.createElement('a');
+  removeBtn.classList = 'remove-tweet';
+  //text inside 'a ' anchor
+  removeBtn.textContent = "X";
+  
   const li = document.createElement('li');
   
   //the text inside the li is what will equal to the data in the const tweet
   li.textContent = tweet;
   //we have to grab the tweet list, remember th id = "tweet-list"
   tweetList.appendChild(li);
-
+  
+  //Add the remove button to each tweet
+  li.appendChild(removeBtn);
+  
+  //Add to the list
+  tweetList.appendChild(li);
+  
+console.log(li);
 }
