@@ -13,8 +13,10 @@ function eventListeners() {
 //first event listener we need is for when the form is submitted
 //when the submit button is clicked, the funciton newTweet will run
 //there's for the input element, the type is "submit"  
-document.querySelector('#form').addEventListener('submit', newTweet); 
-
+document.querySelector('#form').addEventListener('submit', newTweet);
+  
+  //Remove tweet from list
+  tweetList.addEventListener('click', removeTweet);
 }
 
 //Functions
@@ -41,14 +43,20 @@ function newTweet(e){
   
   //the text inside the li is what will equal to the data in the const tweet
   li.textContent = tweet;
-  //we have to grab the tweet list, remember th id = "tweet-list"
-  tweetList.appendChild(li);
+ 
   
   //Add the remove button to each tweet
   li.appendChild(removeBtn);
   
   //Add to the list
   tweetList.appendChild(li);
+} 
+//console.log(li);
   
-console.log(li);
+function removeTweet(e) {
+  if(e.target.classList.contains('remove-tweet')){
+    console.log('Yes');
+  }else{
+    console.log('No');
+  }
 }
