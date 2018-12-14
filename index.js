@@ -83,11 +83,14 @@ function addTweetLocalStorage(tweet){
   /*/test to see if this funciton is called after the save tweet button is clicked 
   console.log('Hello from local storage function');
   */
-  
-  
   let tweets = getTweetsFromStorage();
   //test function getTweetsFromStorage() 
-  console.log(tweets);
+  //console.log(tweets);
+  //Add the tweet into the array
+  tweets.push(tweet);
+//Convert Tweet array into string and add into localStorage
+  localStorage.setItem('tweets', JSON.stringify( tweets ) );
+
 }
 
 //we can reuse this functionality in other cases
