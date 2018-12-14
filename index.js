@@ -51,6 +51,8 @@ function newTweet(e){
   
   //Add to the list
   tweetList.appendChild(li);
+  
+  addTweetLocalStorage();
 } 
 //console.log(li);
  //removes tweet from DOM
@@ -68,4 +70,13 @@ function removeTweet(e) {
   }
   */
   }
+}
+  
+  
+//add tweet into local storage
+//this function will pass the contents of the const tweet
+//remember const tweet = document.getElementById('tweet').value;
+function addTweetLocalStorage(tweet){
+  //test to see if this funciton is called after the save tweet button is clicked 
+  console.log('Hello from local storage function');
 }
