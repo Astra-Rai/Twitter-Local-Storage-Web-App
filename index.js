@@ -15,7 +15,8 @@ function eventListeners() {
 //there's for the input element, the type is "submit"  
 document.querySelector('#form').addEventListener('submit', newTweet);
   
-  //Remove tweet from list
+  //Remove tweet from list, when a person clicks on the "x", whichi is inside 
+  //the <a>, which is inside the <li> element, the fuction removetweet() runs
   tweetList.addEventListener('click', removeTweet);
 }
 
@@ -52,11 +53,19 @@ function newTweet(e){
   tweetList.appendChild(li);
 } 
 //console.log(li);
-  
+ //removes tweet from DOM
+//in order to access delegation, pass event here
+//targe will prent element pressed, 
 function removeTweet(e) {
-  if(e.target.classList.contains('remove-tweet')){
+  if(e.target.classList.contains('remove-tweet')) {
+    //where on anchor, one element up to <Li>
+    //we want to target theh anchor<a> AND the parent element
+    e.target.parentElement.remove();
+    /*Test to see if event listener to remove tweety is working?
     console.log('Yes');
   }else{
     console.log('No');
+  }
+  */
   }
 }
