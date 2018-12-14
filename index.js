@@ -77,6 +77,30 @@ function removeTweet(e) {
 //this function will pass the contents of the const tweet
 //remember const tweet = document.getElementById('tweet').value;
 function addTweetLocalStorage(tweet){
-  //test to see if this funciton is called after the save tweet button is clicked 
+  
+  
+  
+  /*/test to see if this funciton is called after the save tweet button is clicked 
   console.log('Hello from local storage function');
+  */
+  
+  
+  let tweets = getTweetsFromStorage();
+  //test function getTweetsFromStorage() 
+  console.log(tweets);
+}
+
+//we can reuse this functionality in other cases
+function getTweetsFromStorage(){
+  let tweets;
+  const tweetsLS = localStorage.getItem('tweets');
+  //get the values, if null is returned, then we create an empty array
+  if(tweetsLS === null) {
+    tweets = [];
+  } else {
+    //convert function from a string to an array, use JSON.parse
+    tweets = JSON.parse( tweetsLS );
+  } 
+  //returns tweets
+  return tweets;
 }
