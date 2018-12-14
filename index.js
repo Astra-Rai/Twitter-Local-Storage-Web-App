@@ -18,6 +18,10 @@ document.querySelector('#form').addEventListener('submit', newTweet);
   //Remove tweet from list, when a person clicks on the "x", whichi is inside 
   //the <a>, which is inside the <li> element, the fuction removetweet() runs
   tweetList.addEventListener('click', removeTweet);
+  
+  document.addEventListener('DOMContentLoaded', localStorageOnLoad);
+  
+  
 }
 
 //Functions
@@ -88,22 +92,46 @@ function addTweetLocalStorage(tweet){
   //console.log(tweets);
   //Add the tweet into the array
   tweets.push(tweet);
-//Convert Tweet array into string and add into localStorage
+//Convert tweet array into string and add into localStorage
   localStorage.setItem('tweets', JSON.stringify( tweets ) );
 
 }
+function getTweetsFromStorage() {
+     let tweets;
+     const tweetsLS = localStorage.getItem('tweets');
+     // Get the values, if null is returned then we create an empty array
+     if(tweetsLS === null) {
+          tweets = [];
+     } else {
+          tweets = JSON.parse( tweetsLS ); 
+     }
+     return tweets;
+}
 
-//we can reuse this functionality in other cases
-function getTweetsFromStorage(){
-  let tweets;
-  const tweetsLS = localStorage.getItem('tweets');
-  //get the values, if null is returned, then we create an empty array
-  if(tweetsLS === null) {
-    tweets = [];
-  } else {
-    //convert function from a string to an array, use JSON.parse
-    tweets = JSON.parse( tweetsLS );
-  } 
-  //returns tweets
-  return tweets;
+
+//we need to read values from application
+
+//Prints local storage tweets on load
+
+function localStorageOnLoad() {
+  let tweets = getTweetsFromStorage();
+  
+  //console.log(tweets);
+  
+     tweets.forEach(function(tweet) {
+          // Create the remove button
+          const removeBtn = document.createElement('a');
+          removeBtn.classList = 'remove-tweet';
+          removeBtn.textContent = 'X';
+
+          // Create an <li> element
+          const li = document.createElement('li');
+          li.textContent = tweet; 
+          
+          // Add the remove button to each tweet
+          li.appendChild(removeBtn);
+
+          // Add to the list
+          tweetList.appendChild(li);
+     });
 }
